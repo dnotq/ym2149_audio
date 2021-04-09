@@ -1,4 +1,4 @@
-# SN76489 Complex Sound Generator
+# YM-2149 (AY-3-8913) Complex Sound Generator
 
 VHDL, BSD 3-Clause
 
