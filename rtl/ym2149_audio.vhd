@@ -286,8 +286,10 @@ architecture rtl of ym2149_audio is
    signal hold_ff_r           : std_logic := '0';
    signal hold_ff_x           : std_logic;
 
+   -- Added init value to env_out_s to keep simulation from complaining
+   -- about metavalues at 0ps.
    signal env_sel_s           : std_logic;
-   signal env_out_s           : unsigned(4 downto 0);
+   signal env_out_s           : unsigned(4 downto 0) := (others => '0');
 
    -- Amplitude control.
    signal level_a_s           : unsigned(11 downto 0);
