@@ -201,23 +201,26 @@ architecture rtl of ym2149_audio is
    signal ch_c_level_r        : unsigned(11 downto 0) := (others => '0');
    signal ch_c_level_x        : unsigned(11 downto 0);
 
+   -- Added init value to channel period conbinatorial signals to keep
+   -- simulation from complaining about metavalues at 0ps.
+
    -- Register-name signals.
-   signal ch_a_period_s       : unsigned(11 downto 0);
+   signal ch_a_period_s       : unsigned(11 downto 0) := (others => '0');
    signal ch_a_tone_en_n_s    : std_logic;
    signal ch_a_noise_en_n_s   : std_logic;
    signal ch_a_mode_s         : std_logic;
 
-   signal ch_b_period_s       : unsigned(11 downto 0);
+   signal ch_b_period_s       : unsigned(11 downto 0) := (others => '0');
    signal ch_b_tone_en_n_s    : std_logic;
    signal ch_b_noise_en_n_s   : std_logic;
    signal ch_b_mode_s         : std_logic;
 
-   signal ch_c_period_s       : unsigned(11 downto 0);
+   signal ch_c_period_s       : unsigned(11 downto 0) := (others => '0');
    signal ch_c_tone_en_n_s    : std_logic;
    signal ch_c_noise_en_n_s   : std_logic;
    signal ch_c_mode_s         : std_logic;
 
-   signal noise_period_s      : unsigned( 4 downto 0);
+   signal noise_period_s      : unsigned( 4 downto 0) := (others => '0');
 
    signal env_period_s        : unsigned(15 downto 0);
    signal env_continue_s      : std_logic;
@@ -347,7 +350,9 @@ architecture rtl of ym2149_audio is
    -- The lowest volume level needs to go to 0 in a digital SoC to prevent
    -- noise that would be filtered in a real system with external electronics.
 
-   signal dac_reg_bit0_s      : std_logic;
+   -- Added init value to dac_reg_bit0_s to keep simulation from complaining
+   -- about metavalues at 0ps.
+   signal dac_reg_bit0_s      : std_logic := '0';
    signal dac_reg_level_s     : unsigned(11 downto 0);
    signal dac_env_level_s     : unsigned(11 downto 0);
 
